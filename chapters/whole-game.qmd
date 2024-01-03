@@ -63,7 +63,13 @@ delivery_train.plot.scatter(
 )
 plt.show();
 
-delivery_train['day'] = delivery_train['day'].astype('category').cat.set_categories(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
+delivery_train['day'] = (
+  delivery_train['day']
+  .astype('category')
+  .cat.set_categories(
+    ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+  )
+)
 
 delivery_train.boxplot(
   column='time_to_delivery',
