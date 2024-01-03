@@ -1,0 +1,95 @@
+---
+format:
+  html:
+    code-fold: false
+echo: true
+jupyter: python3
+---
+
+# The Whole Game {#sec-whole-game}
+
+This chapter on the main website is a high-level tour of the modeling process. We'll follow the same pattern here by analyzing the same data. But in Python!
+
+Let's run some code to get started: 
+
+```{python}
+#| label: whole-game-load
+
+import sklearn
+import pandas as pd
+
+```
+
+
+Load data
+```{python}
+#| label: load data from root
+#| eval: false
+deliveries = pd.read_csv("data/deliveries.csv", index_col=0)
+deliveries.head()
+```
+```{python}
+#| label: load data in quarto
+#| echo: false
+deliveries = pd.read_csv("../data/deliveries.csv", index_col=0)
+deliveries.head()
+```
+
+pandas provides plotting utilities, wrapping matplotlib:
+
+```{python}
+deliveries['time_to_delivery'].hist(bins=30);
+```
+
+TODO: labels, decorations... rug plot maybe?
+
+
+Data splitting.  sklearn's train_test_split doesn't support stratifying on a continuous outcome.  For now, just assume it's fine without it.
+```{python}
+from sklearn.model_selection import train_test_split
+delivery_train_val, delivery_test = train_test_split(deliveries, test_size=0.2, random_state=991)
+delivery_train, delivery_val = train_test_split(delivery_train_val, test_size=0.2, random_state=991)
+```
+
+
+
+More plotting!
+```{python}
+from matplotlib import pyplot as plt
+delivery_train.plot.scatter(
+  x='distance',
+  y='time_to_delivery',
+  alpha=0.1,
+)
+plt.show();
+
+delivery_train['day'] = delivery_train['day'].astype('category').cat.set_categories(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
+
+delivery_train.boxplot(
+  column='time_to_delivery',
+  by='day',
+);
+```
+Weird automatic title on that box plot.  I'm not sure how (whether?) to approach the geom_smooth from the ggplot2 version.  TODO subplots.
+
+Oh, do the sklearn html reprs work in quarto?
+```{python}
+from sklearn.compose import ColumnTransformer, make_column_selector
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.pipeline import Pipeline
+from sklearn.linear_model import LogisticRegression
+
+pipe = Pipeline([
+  ('preproc', ColumnTransformer([
+    ('num', StandardScaler(), make_column_selector(dtype_include='number')),
+    ('cat', OneHotEncoder(), make_column_selector(dtype_include=['object', 'category'])),
+  ])),
+  ('model', LogisticRegression()),
+])
+
+pipe
+```
+
+Nice.
+
+
