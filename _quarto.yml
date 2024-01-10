@@ -37,7 +37,7 @@ book:
       style: "docked"
       title: " "
   reader-mode: true
-  # bread-crumbs: false
+  bread-crumbs: false
   chapters:
   - index.qmd
   # - chapters/news.qmd
