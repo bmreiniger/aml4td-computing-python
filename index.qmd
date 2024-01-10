@@ -1,1 +1,59 @@
-oops
+---
+format:
+  html:
+    echo: false
+---
+
+```{python}
+from platform import python_version
+import subprocess
+
+quarto_version = (
+  subprocess.run('quarto --version', capture_output=True)
+  .stdout.decode().strip()
+)
+```
+
+# Preface  {.unnumbered}
+
+This is a computing supplement to the main website that uses python, and in particular scikit-learn for modeling. The structure is similar to the website, but the content here shows how to use this software for each topic.
+
+<!-- We also want these materials to be reusable and open. The sources are in the source [GitHub repository](https://github.com/aml4td/computing-tidymodels) with a Creative Commons license attached (see below). -->
+
+<!-- To cite this work, we suggest:  -->
+
+## License {.unnumbered}
+
+ <p xmlns:cc="http://creativecommons.org/ns#" >This work is licensed under <a href="http://creativecommons.org/licenses/by-sa/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;">CC BY-SA 4.0<img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"><img style="height:22px!important;margin-left:3px;vertical-align:text-bottom;" src="https://mirrors.creativecommons.org/presskit/icons/sa.svg?ref=chooser-v1"></a></p> 
+
+## Intended Audience {.unnumbered}
+
+Readers should have used python before, but do not have to be experts. 
+If you are new to python, we suggest taking a look at the [_Python Data Science Handbook_](https://jakevdp.github.io/PythonDataScienceHandbook/). 
+
+You do not have to be a modeling expert either. We hope that you have used a linear or logistic regression before and understand basic statistical concepts such as correlation, variability, probabilities, etc. 
+
+## How can I ask questions? 
+
+If you have questions about the content, it is probably best to ask on a public forum, like [Stack Overflow](https://stackoverflow.com) for programmatic questions, or the [data science](https://datascience.stackexchange.com) or [statistics](https://stats.stackexchange.com/) Stack Exchange sites. You'll most likely get a faster answer there if you take the time to ask the questions in the best way possible.
+
+If you want a direct answer from us, you should follow what Max calls [_Yihui's Rule_](https://yihui.org/en/2017/08/so-gh-email/): add an issue to GitHub (labeled as "Discussion") first. It may take some time for us to get back to you. 
+
+<!-- If you think there is a bug, please [file an issue](https://github.com//aml4td/computing-tidymodels/issues).  -->
+
+## Can I contribute?  {.unnumbered}
+
+There is a [contributing page](chapters/contributing.html) with details on how to get up and running to compile the materials and suggestions on how to help. 
+
+If you just want to fix a typo, you can make a pull request to alter the appropriate `.qmd` file. 
+
+Please feel free to improve the quality of this content by submitting **pull requests**. 
+<!-- A merged PR will make you appear in the contributor list.  -->
+
+## Computing Notes {.unnumbered}
+
+[Quarto](https://quarto.org/) version `{python} quarto_version` was used to compile and render the materials.  
+<!-- (View this page's source html, and you should find the version of Quarto used.) -->
+
+Python version `{python} python_version()` was used for computations. 
+For the list of python packages used and their versions, see the Pipfile in the source repository.
