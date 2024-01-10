@@ -1,0 +1,72 @@
+# Contributing {.unlisted .unnumbered}
+
+If you plan to do anything beyond fixing a typo, the best thing you can do is to open an issue and discuss changes before you spend a lot of time doing them. 
+
+<!-- If you don't have a lot of experience with git or GitHub, take a look at the wonderful [_Happy Git and GitHub for the useR_](https://happygitwithr.com/).  -->
+
+If you want to contribute, some general advice is: 
+
+ <!-- - Only check in the source files (qmd, yml, bib, pre-made image files, etc). Don't commit the rendered files. (N.B. in this draft we're publishing from the `/docs` repo and this doesn't apply; when we migrate this'll probably change) -->
+
+ - Keep the changes small in scope. If the overall change is larger, make a sequence of small pull requests. 
+ - The edits cannot include exact code that is under another license (i.e., don't just copy/paste from R sources, etc.)
+ <!-- - Respect the existing code formatting/linting (as heterogeneous as it is).  -->
+
+ - Stick to using python for computations.  
+ - Don't update software versions unless you have to. If you need to update or add something, use Pipenv (described below) to codify the software requirements.  
+
+<!-- A merged PR will make you appear in the contributor list (see below). -->
+A merged PR is considered a donation of your work to this project. 
+You are still bound by the conditions of the license, meaning that you are **not considered an author, copyright holder, or owner** of the content once it has been merged in.
+
+You will mostly work with the `*.qmd` files in the `chapters` directory. 
+
+Here is a list of the elements in the repo: 
+
+```
+├── _book                       # Created by quarto
+├── _cache                      # Location of cached chunks  
+├── _freeze                     # Created by quarto
+├── _quarto.yml                 # configuration file
+├── chapters                    # qmd content files
+├── data                        # data files
+├── figures                     # Location for created image files 
+── includes                     # tex, bib, and html files to include
+├── index.qmd                   # Initial quarto file
+├── license.*                   # License information
+├── Pipfile                     # basic environment specification
+└── Pipfile.lock                # full environment specification
+```
+
+## Software
+
+```{python}
+from platform import python_version
+import subprocess
+
+quarto_version = (
+  subprocess.run('quarto --version', capture_output=True)
+  .stdout.decode().strip()
+)
+```
+
+### Quarto
+
+Quarto is an open-source scientific and technical publishing system. [Quarto](https://quarto.org/docs/get-started/) version `{python} quarto_version` is used to compile the website.
+
+### python and Pipenv
+
+Python `{python} python_version()` is what we are currently using. There are several IDEs that you can use. We've used VSCode. <!--and?-->
+
+I've set this up with Pipenv as an environment manager, but may switch.
+
+To get package dependencies installed...
+
+<details>
+
+Install pipenv if you don't already have it.  From the project top-level folder, run in a CLI `pipenv install`.  This may take some time, as it creates and populates an environment with all the required packages.
+
+</details>
+
+
+<!-- TODO: contributors list as in tidymodels version -->

@@ -65,5 +65,25 @@
     "crumbs": [
       "Preface"
     ]
+  },
+  {
+    "objectID": "chapters/contributing.html",
+    "href": "chapters/contributing.html",
+    "title": "Contributing",
+    "section": "",
+    "text": "Software",
+    "crumbs": [
+      "Contributing"
+    ]
+  },
+  {
+    "objectID": "chapters/contributing.html#software",
+    "href": "chapters/contributing.html#software",
+    "title": "Contributing",
+    "section": "",
+    "text": "Quarto\nQuarto is an open-source scientific and technical publishing system. Quarto version 1.4.538 is used to compile the website.\n\n\npython and Pipenv\nPython 3.11.7 is what we are currently using. There are several IDEs that you can use. We’ve used VSCode. \nI’ve set this up with Pipenv as an environment manager, but may switch.\nTo get package dependencies installed…\n\nInstall pipenv if you don’t already have it. From the project top-level folder, run in a CLI pipenv install. This may take some time, as it creates and populates an environment with all the required packages.",
+    "crumbs": [
+      "Contributing"
+    ]
   }
 ]
