@@ -8,7 +8,9 @@ jupyter: python3
 
 # The Whole Game {#sec-whole-game}
 
-This chapter on the main website is a high-level tour of the modeling process. We'll follow the same pattern here by analyzing the same data. But in Python!
+This chapter on the main website is a high-level tour of the modeling process.
+We'll follow the same pattern here by analyzing the same data.
+But in Python!
 
 Let's run some code to get started: 
 
@@ -28,8 +30,8 @@ Load data
 deliveries = pd.read_csv("data/deliveries.csv", index_col=0)
 deliveries.head()
 ```
+
 ```{python}
-#| label: load data in quarto
 #| echo: false
 deliveries = pd.read_csv("../data/deliveries.csv", index_col=0)
 deliveries.head()
@@ -38,6 +40,7 @@ deliveries.head()
 pandas provides plotting utilities, wrapping matplotlib:
 
 ```{python}
+#| label: histogram-of-outcome
 deliveries['time_to_delivery'].hist(bins=30);
 ```
 
@@ -46,6 +49,7 @@ TODO: labels, decorations... rug plot maybe?
 
 Data splitting.  sklearn's train_test_split doesn't support stratifying on a continuous outcome.  For now, just assume it's fine without it.
 ```{python}
+#| label: data split
 from sklearn.model_selection import train_test_split
 delivery_train_val, delivery_test = train_test_split(deliveries, test_size=0.2, random_state=991)
 delivery_train, delivery_val = train_test_split(delivery_train_val, test_size=0.2, random_state=991)
@@ -55,6 +59,7 @@ delivery_train, delivery_val = train_test_split(delivery_train_val, test_size=0.
 
 More plotting!
 ```{python}
+#| label: eda-plots
 from matplotlib import pyplot as plt
 delivery_train.plot.scatter(
   x='distance',
@@ -76,10 +81,12 @@ delivery_train.boxplot(
   by='day',
 );
 ```
+
 Weird automatic title on that box plot.  I'm not sure how (whether?) to approach the geom_smooth from the ggplot2 version.  TODO subplots.
 
 Oh, do the sklearn html reprs work in quarto?
 ```{python}
+#| label: sklearn preprocessing pipeline html repr
 from sklearn.compose import ColumnTransformer, make_column_selector
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
 from sklearn.pipeline import Pipeline

@@ -52,21 +52,27 @@ quarto_version = (
 
 ### Quarto
 
-Quarto is an open-source scientific and technical publishing system. [Quarto](https://quarto.org/docs/get-started/) version `{python} quarto_version` is used to compile the website.
+Quarto is an open-source scientific and technical publishing system.
+[Quarto](https://quarto.org/docs/get-started/) version `{python} quarto_version` is used to compile the website.
 
 ### python and Pipenv
 
-Python `{python} python_version()` is what we are currently using. There are several IDEs that you can use. We've used VSCode. <!--and?-->
+Python `{python} python_version()` is what we are currently using.
+There are several IDEs that you can use. We've used VSCode. <!--and?-->
 
 I've set this up with Pipenv as an environment manager, but may switch.
 
-To get package dependencies installed...
+Install pipenv if you don't already have it.
+From the project top-level folder, run from a command line `pipenv install`.
+This may take some time, as it creates and populates an environment with all the required packages.
 
-<details>
+### Building the site
 
-Install pipenv if you don't already have it.  From the project top-level folder, run in a CLI `pipenv install`.  This may take some time, as it creates and populates an environment with all the required packages.
-
-</details>
-
+From your pipenv (e.g. by starting in the root folder and running `pipenv shell`), run `quarto render`.
+This should run all the python snippets (using the pipenv python), caching some of the results,
+and render the output into `/docs` for you to preview.
+(For now, the github pages are also served directly from `/docs`,
+but eventually we will probably set up github actions to generate the docs on PR merges,
+at which point the local copy will be added to `.gitignore` and just for your preview.)
 
 <!-- TODO: contributors list as in tidymodels version -->

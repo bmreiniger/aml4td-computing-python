@@ -1,0 +1,19 @@
+# Introduction {#sec-introduction}
+
+To run the code in this supplement, you'll need python and a handful of packages.
+It's never too early to start using python environments;
+for the purposes of this supplement, [anaconda](https://www.anaconda.com/download/) is probably easiest,
+as it comes with most of the packages you'll need.
+(If you need to save some disk space, consider [miniconda](https://docs.conda.io/projects/miniconda/en/latest/),
+and install the additional packages as you go, or from the `Pipfile` in the github repository.
+Or, if you prefer, use pipenv directly.  Or some other python environment manager of your choice.)
+
+Occasionally (and increasingly as this ages) you may find version issues.
+If so, check the `Pipfile` in the github repository for the versions being used at the time this page was rendered.
+Either install those specific versions of packages,
+or use that to track down what may have changed with the versions you already have,
+and modify the code accordingly.
+(And consider making a PR for the update!)
+
+When running code, use `ipython` or `jupyter`.
+All imports will be made explicitly in the chapters.

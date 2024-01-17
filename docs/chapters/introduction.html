@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Python Computing Supplement - Contributing</title>
+<title>Python Computing Supplement - 1&nbsp; Introduction</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../chapters/introduction.html" rel="next">
-<link href="../index.html" rel="prev">
+<link href="../chapters/whole-game.html" rel="next">
+<link href="../chapters/contributing.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -82,7 +82,7 @@ ul.task-list li input[type="checkbox"] {
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <a class="flex-grow-1 no-decor" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-          <h1 class="quarto-secondary-nav-title">Contributing</h1>
+          <h1 class="quarto-secondary-nav-title"><span id="sec-introduction" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></h1>
         </a>     
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
@@ -145,13 +145,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/contributing.html" class="sidebar-item-text sidebar-link active">
+  <a href="../chapters/contributing.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Contributing</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../chapters/introduction.html" class="sidebar-item-text sidebar-link">
+  <a href="../chapters/introduction.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></a>
   </div>
 </li>
@@ -167,25 +167,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#software" id="toc-software" class="nav-link active" data-scroll-target="#software">Software</a>
-  <ul class="collapse">
-  <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto">Quarto</a></li>
-  <li><a href="#python-and-pipenv" id="toc-python-and-pipenv" class="nav-link" data-scroll-target="#python-and-pipenv">python and Pipenv</a></li>
-  <li><a href="#building-the-site" id="toc-building-the-site" class="nav-link" data-scroll-target="#building-the-site">Building the site</a></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Contributing</h1>
+<h1 class="title d-none d-lg-block"><span id="sec-introduction" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span></h1>
 </div>
 
 
@@ -202,53 +191,11 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>If you plan to do anything beyond fixing a typo, the best thing you can do is to open an issue and discuss changes before you spend a lot of time doing them.</p>
-<!-- If you don't have a lot of experience with git or GitHub, take a look at the wonderful [_Happy Git and GitHub for the useR_](https://happygitwithr.com/).  -->
-<p>If you want to contribute, some general advice is:</p>
-<p><!-- - Only check in the source files (qmd, yml, bib, pre-made image files, etc). Don't commit the rendered files. (N.B. in this draft we're publishing from the `/docs` repo and this doesn't apply; when we migrate this'll probably change) --></p>
-<ul>
-<li><p>Keep the changes small in scope. If the overall change is larger, make a sequence of small pull requests.</p></li>
-<li><p>The edits cannot include exact code that is under another license (i.e., don’t just copy/paste from R sources, etc.) <!-- - Respect the existing code formatting/linting (as heterogeneous as it is).  --></p></li>
-<li><p>Stick to using python for computations.<br>
-</p></li>
-<li><p>Don’t update software versions unless you have to. If you need to update or add something, use Pipenv (described below) to codify the software requirements.</p></li>
-</ul>
-<!-- A merged PR will make you appear in the contributor list (see below). -->
-<p>A merged PR is considered a donation of your work to this project. You are still bound by the conditions of the license, meaning that you are <strong>not considered an author, copyright holder, or owner</strong> of the content once it has been merged in.</p>
-<p>You will mostly work with the <code>*.qmd</code> files in the <code>chapters</code> directory.</p>
-<p>Here is a list of the elements in the repo:</p>
-<pre><code>├── _book                       # Created by quarto
-├── _cache                      # Location of cached chunks  
-├── _freeze                     # Created by quarto
-├── _quarto.yml                 # configuration file
-├── chapters                    # qmd content files
-├── data                        # data files
-├── figures                     # Location for created image files 
-── includes                     # tex, bib, and html files to include
-├── index.qmd                   # Initial quarto file
-├── license.*                   # License information
-├── Pipfile                     # basic environment specification
-└── Pipfile.lock                # full environment specification</code></pre>
-<section id="software" class="level2">
-<h2 class="anchored" data-anchor-id="software">Software</h2>
-<section id="quarto" class="level3">
-<h3 class="anchored" data-anchor-id="quarto">Quarto</h3>
-<p>Quarto is an open-source scientific and technical publishing system. <a href="https://quarto.org/docs/get-started/">Quarto</a> version 1.4.538 is used to compile the website.</p>
-</section>
-<section id="python-and-pipenv" class="level3">
-<h3 class="anchored" data-anchor-id="python-and-pipenv">python and Pipenv</h3>
-<p>Python 3.11.7 is what we are currently using. There are several IDEs that you can use. We’ve used VSCode. <!--and?--></p>
-<p>I’ve set this up with Pipenv as an environment manager, but may switch.</p>
-<p>Install pipenv if you don’t already have it. From the project top-level folder, run from a command line <code>pipenv install</code>. This may take some time, as it creates and populates an environment with all the required packages.</p>
-</section>
-<section id="building-the-site" class="level3">
-<h3 class="anchored" data-anchor-id="building-the-site">Building the site</h3>
-<p>From your pipenv (e.g.&nbsp;by starting in the root folder and running <code>pipenv shell</code>), run <code>quarto render</code>. This should run all the python snippets (using the pipenv python), caching some of the results, and render the output into <code>/docs</code> for you to preview. (For now, the github pages are also served directly from <code>/docs</code>, but eventually we will probably set up github actions to generate the docs on PR merges, at which point the local copy will be added to <code>.gitignore</code> and just for your preview.)</p>
-<!-- TODO: contributors list as in tidymodels version -->
+<p>To run the code in this supplement, you’ll need python and a handful of packages. It’s never too early to start using python environments; for the purposes of this supplement, <a href="https://www.anaconda.com/download/">anaconda</a> is probably easiest, as it comes with most of the packages you’ll need. (If you need to save some disk space, consider <a href="https://docs.conda.io/projects/miniconda/en/latest/">miniconda</a>, and install the additional packages as you go, or from the <code>Pipfile</code> in the github repository. Or, if you prefer, use pipenv directly. Or some other python environment manager of your choice.)</p>
+<p>Occasionally (and increasingly as this ages) you may find version issues. If so, check the <code>Pipfile</code> in the github repository for the versions being used at the time this page was rendered. Either install those specific versions of packages, or use that to track down what may have changed with the versions you already have, and modify the code accordingly. (And consider making a PR for the update!)</p>
+<p>When running code, use <code>ipython</code> or <code>jupyter</code>. All imports will be made explicitly in the chapters.</p>
 
 
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -635,13 +582,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../index.html" class="pagination-link  aria-label=" preface"="">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Preface</span>
+      <a href="../chapters/contributing.html" class="pagination-link  aria-label=" contributing"="">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Contributing</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/introduction.html" class="pagination-link" aria-label="<span class='chapter-number'>1</span>&nbsp; <span class='chapter-title'>Introduction</span>">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/whole-game.html" class="pagination-link" aria-label="<span class='chapter-number'>2</span>&nbsp; <span class='chapter-title'>The Whole Game</span>">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">The Whole Game</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

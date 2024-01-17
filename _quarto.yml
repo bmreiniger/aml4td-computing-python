@@ -32,7 +32,9 @@ book:
   title: "Python Computing Supplement"
   date: last-modified
   date-format: YYYY-MM-DD
-  sharing: [twitter, facebook, linkedin]  
+  site-url: https://bmreiniger.github.io/aml4td-computing-python
+  repo-url: https://github.com/bmreiniger/aml4td-computing-python/
+  sharing: [twitter, facebook, linkedin]
   sidebar:
       style: "docked"
       title: " "
@@ -42,7 +44,7 @@ book:
   - index.qmd
   # - chapters/news.qmd
   - chapters/contributing.qmd
-  # - chapters/introduction.qmd
+  - chapters/introduction.qmd
   - chapters/whole-game.qmd
   # - part: "Preparation"
   # - chapters/initial-data-splitting.qmd
