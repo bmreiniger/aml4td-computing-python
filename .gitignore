@@ -1,9 +1,6 @@
-.Rproj.user
-.Rhistory
-.RData
-.Ruserdata
-
 /.quarto/
+
+.vscode
 
 # intermediate results 
 /_site/

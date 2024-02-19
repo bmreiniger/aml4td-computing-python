@@ -11,28 +11,35 @@ jupyter: python3
 This chapter on the main website is a high-level tour of the modeling process.
 We'll follow the same pattern here by analyzing the same data.
 But in Python!
+We won't be able to reproduce everything, but at a high level you'll see the same key points, and how common python packages work.
 
-Let's run some code to get started: 
+## Load the Data
 
-```{python}
-#| label: whole-game-load
+Start by loading the data;^[
+We've opted to use the comma-separated values (CSV) format
+because that's easily loaded in many programs;
+there are other formats that hold more information (like column data types)
+and are more efficient.]
+pandas is the standard dataframe package in python.^[
+but again, fancier things exist, perhaps most notably `polars`
+]
 
-import sklearn
-import pandas as pd
-
-```
-
-
-Load data
 ```{python}
 #| label: load data from root
 #| eval: false
+import pandas as pd
 deliveries = pd.read_csv("data/deliveries.csv", index_col=0)
 deliveries.head()
 ```
 
 ```{python}
 #| echo: false
+# this cell runs but doesn't get displayed by quarto,
+# while the above cell gets displayed but doesn't run.
+# quarto will run from the chapters folder, so the data directory
+# is one level up, 
+# but when running this file manually from the project root it isn't
+import pandas as pd
 deliveries = pd.read_csv("../data/deliveries.csv", index_col=0)
 deliveries.head()
 ```
@@ -40,69 +47,485 @@ deliveries.head()
 pandas provides plotting utilities, wrapping matplotlib:
 
 ```{python}
-#| label: histogram-of-outcome
-deliveries['time_to_delivery'].hist(bins=30);
-```
-
-TODO: labels, decorations... rug plot maybe?
-
-
-Data splitting.  sklearn's train_test_split doesn't support stratifying on a continuous outcome.  For now, just assume it's fine without it.
-```{python}
-#| label: data split
-from sklearn.model_selection import train_test_split
-delivery_train_val, delivery_test = train_test_split(deliveries, test_size=0.2, random_state=991)
-delivery_train, delivery_val = train_test_split(delivery_train_val, test_size=0.2, random_state=991)
-```
-
-
-
-More plotting!
-```{python}
-#| label: eda-plots
+#| label: fig-histogram-of-outcome
 from matplotlib import pyplot as plt
-delivery_train.plot.scatter(
-  x='distance',
-  y='time_to_delivery',
-  alpha=0.1,
-)
+import numpy as np
+fig, ax = plt.subplots(1, 2, sharey=True)
+deliveries['time_to_delivery'].hist(bins=30, ax=ax[0], label="time to delivery")
+deliveries['time_to_delivery'].apply(np.log).hist(bins=30, ax=ax[1], label="log(time to delivery)")
+ax[0].set_xlabel("time_to_delivery")
+ax[1].set_xlabel("log(time_to_delivery)")
+ax[0].set_ylabel("count")
 plt.show();
+```
 
-delivery_train['day'] = (
-  delivery_train['day']
-  .astype('category')
-  .cat.set_categories(
-    ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-  )
+Reading from a CSV can't intuit everything we'd like.
+The `day` column, the day of the week, was loaded as strings.
+It'll be helpful in some places to cast them to a `categorical` type.
+
+```{python}
+#| label: day to ordinal
+deliveries['day'] = (
+    deliveries['day']
+    .astype('category')
+    .cat.set_categories(
+        ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        ordered=True,
+    )
 )
+```
+
+## Data Spending
+
+sklearn provides `train_test_split` for simple splits, and several other cross-validation generators.
+
+`train_test_split` doesn't currently support stratifying on a continuous outcome.
+It's probably not really needed here: with a large dataset randomness will generally work just fine.
+But we can stratify on the binned outcome^[
+  we use quartiles to match tidymodels, see [docs](https://rsample.tidymodels.org/reference/initial_validation_split.html#arguments)
+]:
+
+```{python}
+#| label: data-split
+from sklearn.model_selection import train_test_split
+delivery_train_val, delivery_test = train_test_split(
+    deliveries,
+    test_size=0.2,
+    random_state=42,
+    stratify=pd.qcut(deliveries['time_to_delivery'], 4),
+)
+delivery_train, delivery_val = train_test_split(
+    delivery_train_val,
+    test_size=0.2 / 0.8,
+    random_state=42,
+    stratify=pd.qcut(delivery_train_val['time_to_delivery'], 4),
+)
+
+print(len(delivery_train), len(delivery_val), len(delivery_test))
+```
+
+## Exploratory Data Analysis
+
+### Distance and datetime features
+
+Plotting smoothed trendlines isn't so easy in pandas+matplotlib^[
+the latter [have expressed concern](https://github.com/matplotlib/matplotlib/issues/19384#issuecomment-768674677)
+over making up information
+as well as possibly exploding the number of parameters needed for different uses];
+for now we avoid additional packages, 
+relying on just the scatter plots in the top charts
+and adding a binned trend line for hour-vs-day interaction.
+
+```{python}
+#| label: fig-eda-plots
+from matplotlib import pyplot as plt
+
+fig, ax = plt.subplots(2, 2, figsize=(8, 6))
+
+delivery_train.plot.scatter(
+    x='distance',
+    y='time_to_delivery',
+    alpha=0.1,
+    ax=ax[0, 0],
+)
+
+delivery_train.plot.scatter(
+    x='hour',
+    y='time_to_delivery',
+    alpha=0.1,
+    ax=ax[0, 1],
+)
+ax[0, 1].set_ylabel('')
 
 delivery_train.boxplot(
-  column='time_to_delivery',
-  by='day',
-);
+    column='time_to_delivery',
+    by='day',
+    ax=ax[1, 0],
+)
+ax[1, 0].set_title('')
+
+
+# without fitting smoothers (another plotting package would help here),
+# we'll bin the `hour` per `day` and line-plot the mean target
+temp = delivery_train.copy()
+temp['hour_bin'] = (
+    temp['hour']
+    .transform(pd.qcut, q=8)
+    .apply(lambda x: x.mid)
+    .astype('float')
+)
+grouped = (
+    temp
+    .groupby(['day', 'hour_bin'], observed=True)
+    ['time_to_delivery']
+    .mean()
+    .reset_index('hour_bin')
+    .groupby('day', observed=True)
+)
+for day, data in grouped:
+    data.plot.line(x='hour_bin', y='time_to_delivery', label=day, ax=ax[1, 1])
+plt.legend()
+
+plt.tight_layout()
+plt.suptitle('EDA plots')
+plt.show()
 ```
 
-Weird automatic title on that box plot.  I'm not sure how (whether?) to approach the geom_smooth from the ggplot2 version.  TODO subplots.
+### Bootstrap confidence intervals for item effects
 
-Oh, do the sklearn html reprs work in quarto?
 ```{python}
-#| label: sklearn preprocessing pipeline html repr
-from sklearn.compose import ColumnTransformer, make_column_selector
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from sklearn.pipeline import Pipeline
-from sklearn.linear_model import LogisticRegression
+#| echo: false
+#| execute: false
+# just putting this here for reference for now
+# scipy bootstrap would be nicer than manually looping
+# and pandas sampling, but I don't think there's a clean way
+# to make it work with our metric that requires two columns
+# (the item to group by, and the target)
+# There are other bootstrap implementations out there,
+# might be worth adopting?
 
-pipe = Pipeline([
-  ('preproc', ColumnTransformer([
-    ('num', StandardScaler(), make_column_selector(dtype_include='number')),
-    ('cat', OneHotEncoder(), make_column_selector(dtype_include=['object', 'category'])),
-  ])),
-  ('model', LogisticRegression()),
+# from scipy.stats import bootstrap
+
+# item_cols = [col for col in delivery_train.columns if col[:5] == "item_"]
+# item_frame = delivery_train[item_cols + ['time_to_delivery']]
+
+# def pct_increase(index_resample):
+#   global item_frame
+#   items_res = item_frame.loc[index_resample]
+#   return [
+#     items_res.groupby(item_col)['time_to_delivery'].mean()
+#     for item_col in item_cols
+#   ]
+
+# bootstrap(item_frame.index.values[np.newaxis, :], n_resamples=101, statistic=pct_increase, axis=0)
+```
+
+Define the metric, make bootstrap samples and apply the metric:
+
+```{python}
+def rel_increase_time_item(df, col):
+    """Computes the relative increase to delivery time when
+    the item for column `col` is present."""
+    return (
+        df[['time_to_delivery']]
+        .groupby(df[col] > 0)
+        .mean()
+        .apply(lambda x: x[True] / x[False] - 1)
+        .item()
+    )
+
+resample_stats = []
+for _ in range(1001):
+    resample = delivery_train.sample(frac=1, replace=True)
+    stat = {}
+    for col in [col for col in resample.columns if col[:5] == "item_"]:
+        stat[col] = rel_increase_time_item(resample, col)
+    resample_stats.append(stat)
+resample_stats = pd.DataFrame(resample_stats)
+resample_stats.head()
+```
+
+Define the confidence intervals:
+
+```{python}
+ci = resample_stats.apply(np.percentile, q=[5, 95])
+ci.index = ['lower', 'upper']
+
+ci = ci.T
+ci['sample'] = [
+    rel_increase_time_item(delivery_train, col)
+    for col in delivery_train.columns if col[:5] == "item_"
+]
+ci = ci.sort_values('sample')
+```
+
+Plot:
+
+```{python}
+#| label: fig-item-effects
+fig = plt.figure(figsize=(5, 12))
+for y, (col, stats) in enumerate(ci.iterrows()):
+    plt.plot([stats['lower'], stats['upper']], [y, y], c='b')
+    plt.plot(stats['sample'], y, 'bo')
+plt.axvline(0, ls='--', c='r', alpha=0.2)
+plt.yticks(np.arange(len(ci)), labels=ci.index)
+plt.xlabel("Increase in delivery time when ordered")
+
+plt.show();
+```
+
+## Model Development
+
+sklearn uses separate parameter slots for its independent and dependent variables, so
+
+```{python}
+y_var = 'time_to_delivery'
+X_train = delivery_train.drop(columns=y_var)
+X_val = delivery_val.drop(columns=y_var)
+X_test = delivery_test.drop(columns=y_var)
+y_train = delivery_train[y_var]
+y_val = delivery_val[y_var]
+y_test = delivery_test[y_var]
+```
+
+
+### Linear model
+
+We use sklearn's `OneHotEncoder` to produce indicator columns (a.k.a. dummy variables, one-hot encoding) for the `day` variable.
+(pandas also has `make_dummies`, but this requires more work with the validation and test sets (and production),
+so we prefer to keep everything in sklearn.)
+
+For splines, we have `SplineTransformer`.
+
+For interaction terms, there's not a direct sklearn transformer.
+We'll use a `FunctionTransformer` and define the transformation function directly.^[
+  We could also use `PolynomialFeatures` here,
+  with degree 2 and `interaction_only=True` to prevent $\mathrm{feature}^2$ terms;
+  that would include things like
+  interactions of Monday with Wednesday,
+  or two spline bases,
+  which we could probably clean up downstream,
+  but this will be a little nicer.
+]
+
+To apply preprocessors to different subsets of columns, we use `ColumnTransformer`.
+
+```{python}
+from sklearn import set_config
+from sklearn.pipeline import Pipeline
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder, SplineTransformer, FunctionTransformer
+
+set_config(transform_output="pandas")
+
+ohe = OneHotEncoder(
+    sparse_output=False,
+    handle_unknown='ignore',
+)
+spl = SplineTransformer(knots='quantile')
+
+def interactions(X):
+    for day_col in [col for col in X.columns if col[:4] == 'day_']:
+        for hour_basis in [col for col in X.columns if col[:5] == 'hour_']:
+            X[f'{day_col}*{hour_basis}'] = X[day_col] * X[hour_basis]
+    return X
+
+int_tfm = FunctionTransformer(interactions, check_inverse=False)
+
+preproc_lr = Pipeline([
+    ('step_1', ColumnTransformer(
+        [
+            ('ohe', ohe, ['day']),
+            ('spl', spl, ['hour']),
+        ],
+        remainder='passthrough',
+        verbose_feature_names_out=False,
+        )
+    ),
+    ('interact', int_tfm),
 ])
 
-pipe
+preproc_lr
 ```
 
-Nice.
+All sklearn estimators (both transformers and model objects) implement a `fit` method that learns statistics/parameters from the data.  Transformers provide `transform` for applying their transformations to data (whether training or test data; for training data, `fit_transform` is available and most often means just `fit` then `transform`).  Model objects provide `predict` (and probabilistic classifiers provide `predict_proba`).  There are many other methods and attributes, but these will get us through the rest of this chapter.
 
+Let's see what the fully preprocessed data looks like.
 
+```{python}
+preproc_lr.fit_transform(X_train)
+```
+
+We can put that frame directly into a model, or again wrap the preprocessor in a pipeline with the model (which will make predicting slightly easier, as the transformations will happen under the hood).
+
+```{python}
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_absolute_error
+
+pipe_lr = Pipeline([
+    ('preproc', preproc_lr),
+    ('linear_reg', LinearRegression()),
+])
+pipe_lr.fit(X_train, y_train)
+
+y_pred = pipe_lr.predict(X_val)
+mean_absolute_error(y_true=y_val, y_pred=y_pred)
+```
+
+Take a look at a calibration plot, the actual-vs-predicted values:
+
+```{python}
+#| label: fig-calibration
+from sklearn.metrics import PredictionErrorDisplay
+PredictionErrorDisplay.from_predictions(
+    y_true=y_val,
+    y_pred=y_pred,
+    kind='actual_vs_predicted',
+    scatter_kwargs={'alpha': 0.1},
+)
+```
+
+### Random forest
+
+sklearn doesn't have a model-based recursive partitioning like cubist;
+there is a different python package just for that,
+but to stick to sklearn for now let's fit instead a random forest.
+Random forests build binary trees like cubist,
+but with constant predictions from each leaf
+ instead of the linear models that cubist produces.
+To reach similar performance then, we'll want deeper trees.
+
+As in the book, this tree-based model doesn't necessitate as much transformation to perform well.
+However, at time of writing sklearn's random forest doesn't handle categorical features,
+so we'll need to one-hot encode `day` still.
+
+And intuitively the _number_ of items ought to also be important;
+while the linear model gets that for free (just the sum of the `item_` columns),
+and a tree can approximate it arbitrarily closely,
+it can be beneficial to the learning procedure to expose this as a feature directly.
+We can add that in the pipeline as another `FunctionTransformer`.
+
+```{python}
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.preprocessing import FunctionTransformer
+from sklearn.compose import make_column_selector
+
+rf = RandomForestRegressor(
+    max_depth=15,
+    n_estimators=100,
+    random_state=42,
+)
+
+def item_count(X):
+    X['item_count'] = X.sum(axis=1)
+    return X
+
+preproc_rf = ColumnTransformer(
+    [
+        ('ohe', ohe, ['day']),
+        ('items', FunctionTransformer(item_count), make_column_selector(pattern='item_*')),
+    ],
+    remainder='passthrough',
+    verbose_feature_names_out=False,
+)
+
+pipe_rf = Pipeline([
+    ('preproc', preproc_rf),
+    ('rand_forest', rf),
+])
+
+pipe_rf.fit(X_train, y_train)
+
+y_pred = pipe_rf.predict(X_val)
+mean_absolute_error(y_true=y_val, y_pred=y_pred)
+```
+
+Adding the item count appears (on the validation set) to have helped a bit.
+Taking into account our analysis of item presence,
+we might modify the count to exclude item 19,
+or increase the weight on item 10, etc.
+But at that point the trees might already be making the relevant modifications.
+
+### Neural network
+
+sklearn isn't the best package for neural networks,
+but it does provide a simple implementation:
+
+```{python}
+from sklearn.neural_network import MLPRegressor
+nn = MLPRegressor(
+    max_iter=500,
+    learning_rate_init=0.01,
+    random_state=42,
+)
+```
+
+As in the book, we won't get into the large space of hyperparameters,
+and just tune the number of neurons in a single hidden layer.
+sklearn offers `GridSearchCV` for tuning hyperparameters in a grid style,
+or `RandomizedSearchCV` for a random search.
+Other packages offer other strategies.
+
+The tuners in sklearn use k-fold cross-validation by default.
+While it's possible to tune using a fixed validation set,
+we'll just use the k-fold splitting of the training set to score hyperparameters,
+and score the best hyperparameter against our validation set.
+
+```{python}
+from sklearn.model_selection import GridSearchCV
+from sklearn.preprocessing import StandardScaler
+
+preproc_nn = ColumnTransformer(
+    [('ohe', ohe, ['day'])],
+    remainder=StandardScaler(),
+)
+
+pipe_nn = Pipeline([
+    ('preproc', preproc_nn),
+    ('neural_net', nn),
+])
+
+# setting hyperparameters for a pipeline
+# uses <step_name>__<parameter>
+params = {
+    'neural_net__hidden_layer_sizes': [(k,) for k in range(2, 10)],
+}
+
+search = GridSearchCV(
+    estimator=pipe_nn,
+    param_grid=params,
+    cv=3,
+    scoring='neg_mean_absolute_error',
+    n_jobs=3,
+)
+
+search.fit(X_train, y_train)
+```
+
+By default, the hyperparameter(s) with the highest score are selected as `best_params_`,
+and a new model is trained with that setting on the entire training set.
+That model object is used when calling `search.predict` below.
+
+```{python}
+y_pred = search.predict(X_val)
+mean_absolute_error(y_true=y_val, y_pred=y_pred)
+```
+
+To find out more about the search, we have a look at the attribute `cv_results_`:
+
+```{python}
+cv_results_frame = pd.DataFrame(search.cv_results_)
+cv_results_frame
+```
+
+Plotting from that dataframe:
+
+```{python}
+#| label: fig-NN-hyperparameter-results
+
+# extract the numeric hidden layer size
+# from the tuple-typed hyperparameter
+cv_results_frame['hidden_layer_size'] = cv_results_frame[
+    'param_neural_net__hidden_layer_sizes'
+].apply(lambda x: x[0])
+
+# convert back from scorer neg_mae to mae
+cv_results_frame[[f'split{i}_mae' for i in range(search.cv)]] = (
+    - cv_results_frame[[f'split{i}_test_score' for i in range(search.cv)]]
+)
+
+from matplotlib import colormaps
+colors = colormaps['tab10'].colors
+fig, ax = plt.subplots(1)
+for i in range(search.cv):
+    cv_results_frame.plot.scatter(
+        x='hidden_layer_size',
+        y=f'split{i}_mae',
+        label=f'split {i}',
+        color=colors[i],
+        ax=ax,
+    )
+plt.legend()
+ax.set_ylabel("MAE")
+plt.show();
+```
