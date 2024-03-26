@@ -471,24 +471,20 @@ params = {
     'neural_net__hidden_layer_sizes': [(k,) for k in range(2, 10)],
 }
 
+# By default the search will use k-fold cross-validation on its training set.
+# If we want to score on the already-defined validation set,
+# we need to pass train+val into `fit` and specify the validation mask in the `cv` parameter.
+delivery_train_val
 search = GridSearchCV(
     estimator=pipe_nn,
     param_grid=params,
-    cv=3,
+    cv=[[list(range(len(X_train))), list(range(len(X_train), len(X_train) + len(X_val)))]],
     scoring='neg_mean_absolute_error',
     n_jobs=3,
 )
 
-search.fit(X_train, y_train)
-```
-
-By default, the hyperparameter(s) with the highest score are selected as `best_params_`,
-and a new model is trained with that setting on the entire training set.
-That model object is used when calling `search.predict` below.
-
-```{python}
-y_pred = search.predict(X_val)
-mean_absolute_error(y_true=y_val, y_pred=y_pred)
+search.fit(pd.concat([X_train, X_val]), pd.concat([y_train, y_val]))
+search.best_score_
 ```
 
 To find out more about the search, we have a look at the attribute `cv_results_`:
@@ -510,21 +506,15 @@ cv_results_frame['hidden_layer_size'] = cv_results_frame[
 ].apply(lambda x: x[0])
 
 # convert back from scorer neg_mae to mae
-cv_results_frame[[f'split{i}_mae' for i in range(search.cv)]] = (
-    - cv_results_frame[[f'split{i}_test_score' for i in range(search.cv)]]
-)
+cv_results_frame['mae'] = - cv_results_frame['mean_test_score']
 
 from matplotlib import colormaps
-colors = colormaps['tab10'].colors
 fig, ax = plt.subplots(1)
-for i in range(search.cv):
-    cv_results_frame.plot.scatter(
-        x='hidden_layer_size',
-        y=f'split{i}_mae',
-        label=f'split {i}',
-        color=colors[i],
-        ax=ax,
-    )
+cv_results_frame.plot.scatter(
+    x='hidden_layer_size',
+    y='mae',
+    ax=ax,
+)
 plt.legend()
 ax.set_ylabel("MAE")
 plt.show();

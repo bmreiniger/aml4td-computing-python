@@ -283,7 +283,7 @@ window.Quarto = {
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>deliveries <span class="op">=</span> pd.read_csv(<span class="st">"data/deliveries.csv"</span>, index_col<span class="op">=</span><span class="dv">0</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>deliveries.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="c3deaa06" class="cell" data-execution_count="2">
+<div id="20122413" class="cell" data-execution_count="2">
 <div class="cell-output cell-output-display" data-execution_count="1">
 <div>
 
@@ -455,7 +455,7 @@ window.Quarto = {
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].set_ylabel(<span class="st">"count"</span>)</span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="fig-histogram-of-outcome" class="quarto-figure quarto-figure-center quarto-float anchored" height="374" width="527">
+<div id="fig-histogram-of-outcome" class="quarto-figure quarto-figure-center quarto-float anchored" width="527" height="374">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-histogram-of-outcome-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="whole-game_files/figure-html/fig-histogram-of-outcome-output-1.png" id="fig-histogram-of-outcome" width="527" height="374" class="figure-img">
@@ -562,7 +562,7 @@ Figure&nbsp;2.1
 <span id="cb6-50"><a href="#cb6-50" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="st">'EDA plots'</span>)</span>
 <span id="cb6-51"><a href="#cb6-51" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="fig-eda-plots" class="quarto-figure quarto-figure-center quarto-float anchored" height="569" width="758">
+<div id="fig-eda-plots" class="quarto-figure quarto-figure-center quarto-float anchored" width="758" height="569">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-eda-plots-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="whole-game_files/figure-html/fig-eda-plots-output-1.png" id="fig-eda-plots" width="758" height="569" class="figure-img">
@@ -578,7 +578,7 @@ Figure&nbsp;2.2
 <section id="bootstrap-confidence-intervals-for-item-effects" class="level3" data-number="2.3.2">
 <h3 data-number="2.3.2" class="anchored" data-anchor-id="bootstrap-confidence-intervals-for-item-effects"><span class="header-section-number">2.3.2</span> Bootstrap confidence intervals for item effects</h3>
 <p>Define the metric, make bootstrap samples and apply the metric:</p>
-<div id="cdedd379" class="cell" data-execution_count="8">
+<div id="11f5fb17" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rel_increase_time_item(df, col):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""Computes the relative increase to delivery time when</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">    the item for column `col` is present."""</span></span>
@@ -633,123 +633,123 @@ Figure&nbsp;2.2
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>0.054103</td>
-<td>0.017292</td>
-<td>0.008682</td>
-<td>0.015977</td>
-<td>0.011972</td>
-<td>0.043665</td>
-<td>0.036624</td>
-<td>0.012765</td>
-<td>0.021645</td>
-<td>0.062728</td>
+<td>0.059837</td>
+<td>0.027667</td>
+<td>0.016086</td>
+<td>0.012144</td>
+<td>0.007851</td>
+<td>0.018182</td>
+<td>0.026414</td>
+<td>0.006065</td>
+<td>0.030333</td>
+<td>0.046600</td>
 <td>...</td>
-<td>0.013388</td>
-<td>-0.014932</td>
-<td>0.014990</td>
-<td>0.041886</td>
-<td>0.034494</td>
-<td>0.014592</td>
-<td>0.015965</td>
-<td>0.020034</td>
-<td>0.020984</td>
-<td>0.049516</td>
+<td>0.011364</td>
+<td>-0.038378</td>
+<td>0.020940</td>
+<td>0.028779</td>
+<td>0.019817</td>
+<td>0.015285</td>
+<td>0.044199</td>
+<td>0.020167</td>
+<td>0.046261</td>
+<td>0.063177</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>0.050011</td>
-<td>0.002393</td>
-<td>-0.001299</td>
-<td>0.001282</td>
-<td>-0.010490</td>
-<td>0.001923</td>
-<td>0.038826</td>
-<td>0.007291</td>
-<td>0.023146</td>
-<td>0.066698</td>
+<td>0.055689</td>
+<td>0.018290</td>
+<td>-0.005845</td>
+<td>-0.004415</td>
+<td>0.005912</td>
+<td>0.010217</td>
+<td>0.015990</td>
+<td>-0.004823</td>
+<td>0.028485</td>
+<td>0.058809</td>
 <td>...</td>
-<td>0.015118</td>
-<td>-0.019182</td>
-<td>0.016508</td>
-<td>0.022857</td>
-<td>0.022154</td>
-<td>0.016174</td>
-<td>0.032608</td>
-<td>0.031186</td>
-<td>0.041065</td>
-<td>0.037091</td>
+<td>0.000547</td>
+<td>-0.033938</td>
+<td>0.024252</td>
+<td>0.012355</td>
+<td>0.045347</td>
+<td>0.025344</td>
+<td>0.026585</td>
+<td>0.014412</td>
+<td>0.027174</td>
+<td>0.047914</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>0.064525</td>
-<td>0.021489</td>
-<td>0.012805</td>
-<td>-0.001155</td>
-<td>-0.006744</td>
-<td>0.017456</td>
-<td>0.021495</td>
-<td>0.013350</td>
-<td>0.010477</td>
-<td>0.079519</td>
+<td>0.045958</td>
+<td>0.018760</td>
+<td>-0.005201</td>
+<td>-0.007170</td>
+<td>-0.006138</td>
+<td>0.014871</td>
+<td>0.014589</td>
+<td>0.010838</td>
+<td>0.020212</td>
+<td>0.059233</td>
 <td>...</td>
-<td>0.026898</td>
-<td>-0.017919</td>
-<td>-0.000028</td>
-<td>0.041610</td>
-<td>0.047812</td>
-<td>0.036134</td>
-<td>0.029307</td>
-<td>0.007808</td>
-<td>0.032878</td>
-<td>0.048277</td>
+<td>0.007720</td>
+<td>-0.032272</td>
+<td>0.025981</td>
+<td>0.016507</td>
+<td>0.034392</td>
+<td>0.036563</td>
+<td>0.026727</td>
+<td>0.018097</td>
+<td>0.027168</td>
+<td>0.063526</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>0.066122</td>
-<td>0.017269</td>
-<td>0.003352</td>
-<td>0.004768</td>
-<td>-0.001041</td>
-<td>0.039762</td>
-<td>0.029516</td>
-<td>0.018215</td>
-<td>0.035621</td>
-<td>0.055254</td>
+<td>0.056362</td>
+<td>0.016948</td>
+<td>0.002318</td>
+<td>0.008138</td>
+<td>-0.004072</td>
+<td>0.022160</td>
+<td>0.028072</td>
+<td>-0.002906</td>
+<td>0.043547</td>
+<td>0.052030</td>
 <td>...</td>
-<td>0.025648</td>
-<td>-0.043171</td>
-<td>0.032758</td>
-<td>0.003911</td>
-<td>0.033549</td>
-<td>0.038567</td>
-<td>0.029270</td>
-<td>0.018654</td>
-<td>0.045651</td>
-<td>0.044264</td>
+<td>0.020688</td>
+<td>-0.041503</td>
+<td>0.023177</td>
+<td>0.014446</td>
+<td>0.041065</td>
+<td>0.010789</td>
+<td>0.054260</td>
+<td>0.010386</td>
+<td>0.039690</td>
+<td>0.059420</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>0.052150</td>
-<td>0.008242</td>
-<td>-0.000876</td>
-<td>0.005176</td>
-<td>-0.016159</td>
-<td>0.004438</td>
-<td>0.003848</td>
-<td>0.013680</td>
-<td>0.013857</td>
-<td>0.046125</td>
+<td>0.052518</td>
+<td>0.008144</td>
+<td>0.011398</td>
+<td>-0.000210</td>
+<td>0.005164</td>
+<td>0.015617</td>
+<td>0.023016</td>
+<td>0.015322</td>
+<td>0.028712</td>
+<td>0.059072</td>
 <td>...</td>
-<td>0.012379</td>
-<td>-0.043789</td>
-<td>0.017621</td>
-<td>0.014498</td>
-<td>0.017912</td>
-<td>0.019515</td>
-<td>0.021430</td>
-<td>0.022849</td>
-<td>0.032541</td>
-<td>0.029674</td>
+<td>0.009432</td>
+<td>-0.033609</td>
+<td>0.009862</td>
+<td>0.029123</td>
+<td>0.020962</td>
+<td>0.049653</td>
+<td>0.016106</td>
+<td>0.023727</td>
+<td>0.024121</td>
+<td>0.033796</td>
 </tr>
 </tbody>
 </table>
@@ -759,7 +759,7 @@ Figure&nbsp;2.2
 </div>
 </div>
 <p>Define the confidence intervals:</p>
-<div id="06f807b2" class="cell" data-execution_count="9">
+<div id="e31141ec" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ci <span class="op">=</span> resample_stats.<span class="bu">apply</span>(np.percentile, q<span class="op">=</span>[<span class="dv">5</span>, <span class="dv">95</span>])</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ci.index <span class="op">=</span> [<span class="st">'lower'</span>, <span class="st">'upper'</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -782,7 +782,7 @@ Figure&nbsp;2.2
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="fig-item-effects" class="quarto-figure quarto-figure-center quarto-float anchored" height="947" width="454">
+<div id="fig-item-effects" class="quarto-figure quarto-figure-center quarto-float anchored" width="454" height="947">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-item-effects-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="whole-game_files/figure-html/fig-item-effects-output-1.png" id="fig-item-effects" width="454" height="947" class="figure-img">
@@ -799,7 +799,7 @@ Figure&nbsp;2.3
 <section id="model-development" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="model-development"><span class="header-section-number">2.4</span> Model Development</h2>
 <p>sklearn uses separate parameter slots for its independent and dependent variables, so</p>
-<div id="43748608" class="cell" data-execution_count="11">
+<div id="417ee296" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>y_var <span class="op">=</span> <span class="st">'time_to_delivery'</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>X_train <span class="op">=</span> delivery_train.drop(columns<span class="op">=</span>y_var)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>X_val <span class="op">=</span> delivery_val.drop(columns<span class="op">=</span>y_var)</span>
@@ -814,7 +814,7 @@ Figure&nbsp;2.3
 <p>For splines, we have <code>SplineTransformer</code>.</p>
 <p>For interaction terms, there’s not a direct sklearn transformer. We’ll use a <code>FunctionTransformer</code> and define the transformation function directly.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <p>To apply preprocessors to different subsets of columns, we use <code>ColumnTransformer</code>.</p>
-<div id="8665207d" class="cell" data-execution_count="12">
+<div id="a07ca90f" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn <span class="im">import</span> set_config</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.pipeline <span class="im">import</span> Pipeline</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> ColumnTransformer</span>
@@ -863,7 +863,7 @@ Figure&nbsp;2.3
                                    verbose_feature_names_out=False)),
                 ('interact',
                  FunctionTransformer(check_inverse=False,
-                                     func=&lt;function interactions at 0x00000162F512AFC0&gt;))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('step_1',
+                                     func=&lt;function interactions at 0x000001BC4DA0AFC0&gt;))])</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox"><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('step_1',
                  ColumnTransformer(remainder='passthrough',
                                    transformers=[('ohe',
                                                   OneHotEncoder(handle_unknown='ignore',
@@ -875,7 +875,7 @@ Figure&nbsp;2.3
                                    verbose_feature_names_out=False)),
                 ('interact',
                  FunctionTransformer(check_inverse=False,
-                                     func=&lt;function interactions at 0x00000162F512AFC0&gt;))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">step_1: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(remainder='passthrough',
+                                     func=&lt;function interactions at 0x000001BC4DA0AFC0&gt;))])</pre></div></div></div><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox"><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">step_1: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(remainder='passthrough',
                   transformers=[('ohe',
                                  OneHotEncoder(handle_unknown='ignore',
                                                sparse_output=False),
@@ -883,12 +883,12 @@ Figure&nbsp;2.3
                                 ('spl', SplineTransformer(knots='quantile'),
                                  ['hour'])],
                   verbose_feature_names_out=False)</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-3" type="checkbox"><label for="sk-estimator-id-3" class="sk-toggleable__label sk-toggleable__label-arrow">ohe</label><div class="sk-toggleable__content"><pre>['day']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-4" type="checkbox"><label for="sk-estimator-id-4" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore', sparse_output=False)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-5" type="checkbox"><label for="sk-estimator-id-5" class="sk-toggleable__label sk-toggleable__label-arrow">spl</label><div class="sk-toggleable__content"><pre>['hour']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-6" type="checkbox"><label for="sk-estimator-id-6" class="sk-toggleable__label sk-toggleable__label-arrow">SplineTransformer</label><div class="sk-toggleable__content"><pre>SplineTransformer(knots='quantile')</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-7" type="checkbox"><label for="sk-estimator-id-7" class="sk-toggleable__label sk-toggleable__label-arrow">remainder</label><div class="sk-toggleable__content"><pre></pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-8" type="checkbox"><label for="sk-estimator-id-8" class="sk-toggleable__label sk-toggleable__label-arrow">passthrough</label><div class="sk-toggleable__content"><pre>passthrough</pre></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-9" type="checkbox"><label for="sk-estimator-id-9" class="sk-toggleable__label sk-toggleable__label-arrow">FunctionTransformer</label><div class="sk-toggleable__content"><pre>FunctionTransformer(check_inverse=False,
-                    func=&lt;function interactions at 0x00000162F512AFC0&gt;)</pre></div></div></div></div></div></div></div>
+                    func=&lt;function interactions at 0x000001BC4DA0AFC0&gt;)</pre></div></div></div></div></div></div></div>
 </div>
 </div>
 <p>All sklearn estimators (both transformers and model objects) implement a <code>fit</code> method that learns statistics/parameters from the data. Transformers provide <code>transform</code> for applying their transformations to data (whether training or test data; for training data, <code>fit_transform</code> is available and most often means just <code>fit</code> then <code>transform</code>). Model objects provide <code>predict</code> (and probabilistic classifiers provide <code>predict_proba</code>). There are many other methods and attributes, but these will get us through the rest of this chapter.</p>
 <p>Let’s see what the fully preprocessed data looks like.</p>
-<div id="6ae05ee3" class="cell" data-execution_count="13">
+<div id="4d5b8fe1" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>preproc_lr.fit_transform(X_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <div>
@@ -1194,7 +1194,7 @@ Figure&nbsp;2.3
 </div>
 </div>
 <p>We can put that frame directly into a model, or again wrap the preprocessor in a pipeline with the model (which will make predicting slightly easier, as the transformations will happen under the hood).</p>
-<div id="37746421" class="cell" data-execution_count="14">
+<div id="37181fe2" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> mean_absolute_error</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1220,7 +1220,7 @@ Figure&nbsp;2.3
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    scatter_kwargs<span class="op">=</span>{<span class="st">'alpha'</span>: <span class="fl">0.1</span>},</span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="fig-calibration" class="quarto-figure quarto-figure-center quarto-float anchored" height="374" width="531">
+<div id="fig-calibration" class="quarto-figure quarto-figure-center quarto-float anchored" width="531" height="374">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-calibration-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="whole-game_files/figure-html/fig-calibration-output-1.png" id="fig-calibration" width="531" height="374" class="figure-img">
@@ -1238,7 +1238,7 @@ Figure&nbsp;2.4
 <p>sklearn doesn’t have a model-based recursive partitioning like cubist; there is a different python package just for that, but to stick to sklearn for now let’s fit instead a random forest. Random forests build binary trees like cubist, but with constant predictions from each leaf instead of the linear models that cubist produces. To reach similar performance then, we’ll want deeper trees.</p>
 <p>As in the book, this tree-based model doesn’t necessitate as much transformation to perform well. However, at time of writing sklearn’s random forest doesn’t handle categorical features, so we’ll need to one-hot encode <code>day</code> still.</p>
 <p>And intuitively the <em>number</em> of items ought to also be important; while the linear model gets that for free (just the sum of the <code>item_</code> columns), and a tree can approximate it arbitrarily closely, it can be beneficial to the learning procedure to expose this as a feature directly. We can add that in the pipeline as another <code>FunctionTransformer</code>.</p>
-<div id="5793cdb1" class="cell" data-execution_count="16">
+<div id="dc673ed7" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.ensemble <span class="im">import</span> RandomForestRegressor</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> FunctionTransformer</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.compose <span class="im">import</span> make_column_selector</span>
@@ -1280,7 +1280,7 @@ Figure&nbsp;2.4
 <section id="neural-network" class="level3" data-number="2.4.3">
 <h3 data-number="2.4.3" class="anchored" data-anchor-id="neural-network"><span class="header-section-number">2.4.3</span> Neural network</h3>
 <p>sklearn isn’t the best package for neural networks, but it does provide a simple implementation:</p>
-<div id="7fe6216c" class="cell" data-execution_count="17">
+<div id="b65e2f14" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neural_network <span class="im">import</span> MLPRegressor</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>nn <span class="op">=</span> MLPRegressor(</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    max_iter<span class="op">=</span><span class="dv">500</span>,</span>
@@ -1290,7 +1290,7 @@ Figure&nbsp;2.4
 </div>
 <p>As in the book, we won’t get into the large space of hyperparameters, and just tune the number of neurons in a single hidden layer. sklearn offers <code>GridSearchCV</code> for tuning hyperparameters in a grid style, or <code>RandomizedSearchCV</code> for a random search. Other packages offer other strategies.</p>
 <p>The tuners in sklearn use k-fold cross-validation by default. While it’s possible to tune using a fixed validation set, we’ll just use the k-fold splitting of the training set to score hyperparameters, and score the best hyperparameter against our validation set.</p>
-<div id="be1b4c34" class="cell" data-execution_count="18">
+<div id="644e3024" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> GridSearchCV</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1310,74 +1310,29 @@ Figure&nbsp;2.4
 <span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">'neural_net__hidden_layer_sizes'</span>: [(k,) <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, <span class="dv">10</span>)],</span>
 <span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> GridSearchCV(</span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>    estimator<span class="op">=</span>pipe_nn,</span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a>    param_grid<span class="op">=</span>params,</span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span><span class="dv">3</span>,</span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>    scoring<span class="op">=</span><span class="st">'neg_mean_absolute_error'</span>,</span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    n_jobs<span class="op">=</span><span class="dv">3</span>,</span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>search.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># By default the search will use k-fold cross-validation on its training set.</span></span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="co"># If we want to score on the already-defined validation set,</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a><span class="co"># we need to pass train+val into `fit` and specify the validation mask in the `cv` parameter.</span></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>delivery_train_val</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a>search <span class="op">=</span> GridSearchCV(</span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>    estimator<span class="op">=</span>pipe_nn,</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>    param_grid<span class="op">=</span>params,</span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>    cv<span class="op">=</span>[[<span class="bu">list</span>(<span class="bu">range</span>(<span class="bu">len</span>(X_train))), <span class="bu">list</span>(<span class="bu">range</span>(<span class="bu">len</span>(X_train), <span class="bu">len</span>(X_train) <span class="op">+</span> <span class="bu">len</span>(X_val)))]],</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>    scoring<span class="op">=</span><span class="st">'neg_mean_absolute_error'</span>,</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>    n_jobs<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>search.fit(pd.concat([X_train, X_val]), pd.concat([y_train, y_val]))</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>search.best_score_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="17">
-<style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>GridSearchCV(cv=3,
-             estimator=Pipeline(steps=[('preproc',
-                                        ColumnTransformer(remainder=StandardScaler(),
-                                                          transformers=[('ohe',
-                                                                         OneHotEncoder(handle_unknown='ignore',
-                                                                                       sparse_output=False),
-                                                                         ['day'])])),
-                                       ('neural_net',
-                                        MLPRegressor(learning_rate_init=0.01,
-                                                     max_iter=500,
-                                                     random_state=42))]),
-             n_jobs=3,
-             param_grid={'neural_net__hidden_layer_sizes': [(2,), (3,), (4,),
-                                                            (5,), (6,), (7,),
-                                                            (8,), (9,)]},
-             scoring='neg_mean_absolute_error')</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-10" type="checkbox"><label for="sk-estimator-id-10" class="sk-toggleable__label sk-toggleable__label-arrow">GridSearchCV</label><div class="sk-toggleable__content"><pre>GridSearchCV(cv=3,
-             estimator=Pipeline(steps=[('preproc',
-                                        ColumnTransformer(remainder=StandardScaler(),
-                                                          transformers=[('ohe',
-                                                                         OneHotEncoder(handle_unknown='ignore',
-                                                                                       sparse_output=False),
-                                                                         ['day'])])),
-                                       ('neural_net',
-                                        MLPRegressor(learning_rate_init=0.01,
-                                                     max_iter=500,
-                                                     random_state=42))]),
-             n_jobs=3,
-             param_grid={'neural_net__hidden_layer_sizes': [(2,), (3,), (4,),
-                                                            (5,), (6,), (7,),
-                                                            (8,), (9,)]},
-             scoring='neg_mean_absolute_error')</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-11" type="checkbox"><label for="sk-estimator-id-11" class="sk-toggleable__label sk-toggleable__label-arrow">estimator: Pipeline</label><div class="sk-toggleable__content"><pre>Pipeline(steps=[('preproc',
-                 ColumnTransformer(remainder=StandardScaler(),
-                                   transformers=[('ohe',
-                                                  OneHotEncoder(handle_unknown='ignore',
-                                                                sparse_output=False),
-                                                  ['day'])])),
-                ('neural_net',
-                 MLPRegressor(learning_rate_init=0.01, max_iter=500,
-                              random_state=42))])</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-serial"><div class="sk-item sk-dashed-wrapped"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-12" type="checkbox"><label for="sk-estimator-id-12" class="sk-toggleable__label sk-toggleable__label-arrow">preproc: ColumnTransformer</label><div class="sk-toggleable__content"><pre>ColumnTransformer(remainder=StandardScaler(),
-                  transformers=[('ohe',
-                                 OneHotEncoder(handle_unknown='ignore',
-                                               sparse_output=False),
-                                 ['day'])])</pre></div></div></div><div class="sk-parallel"><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-13" type="checkbox"><label for="sk-estimator-id-13" class="sk-toggleable__label sk-toggleable__label-arrow">ohe</label><div class="sk-toggleable__content"><pre>['day']</pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-14" type="checkbox"><label for="sk-estimator-id-14" class="sk-toggleable__label sk-toggleable__label-arrow">OneHotEncoder</label><div class="sk-toggleable__content"><pre>OneHotEncoder(handle_unknown='ignore', sparse_output=False)</pre></div></div></div></div></div></div><div class="sk-parallel-item"><div class="sk-item"><div class="sk-label-container"><div class="sk-label sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-15" type="checkbox"><label for="sk-estimator-id-15" class="sk-toggleable__label sk-toggleable__label-arrow">remainder</label><div class="sk-toggleable__content"><pre></pre></div></div></div><div class="sk-serial"><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-16" type="checkbox"><label for="sk-estimator-id-16" class="sk-toggleable__label sk-toggleable__label-arrow">StandardScaler</label><div class="sk-toggleable__content"><pre>StandardScaler()</pre></div></div></div></div></div></div></div></div><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-17" type="checkbox"><label for="sk-estimator-id-17" class="sk-toggleable__label sk-toggleable__label-arrow">MLPRegressor</label><div class="sk-toggleable__content"><pre>MLPRegressor(learning_rate_init=0.01, max_iter=500, random_state=42)</pre></div></div></div></div></div></div></div></div></div></div></div></div>
-</div>
-</div>
-<p>By default, the hyperparameter(s) with the highest score are selected as <code>best_params_</code>, and a new model is trained with that setting on the entire training set. That model object is used when calling <code>search.predict</code> below.</p>
-<div id="1312bea7" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> search.predict(X_val)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>mean_absolute_error(y_true<span class="op">=</span>y_val, y_pred<span class="op">=</span>y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="18">
-<pre><code>1.5896399846317644</code></pre>
+<pre><code>-1.5896399846317641</code></pre>
 </div>
 </div>
 <p>To find out more about the search, we have a look at the attribute <code>cv_results_</code>:</p>
-<div id="fb0f11aa" class="cell" data-execution_count="20">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>cv_results_frame <span class="op">=</span> pd.DataFrame(search.cv_results_)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>cv_results_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="19">
+<div id="9d5a4e61" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>cv_results_frame <span class="op">=</span> pd.DataFrame(search.cv_results_)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>cv_results_frame</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="18">
 <div>
 
 
@@ -1392,8 +1347,6 @@ Figure&nbsp;2.4
 <th data-quarto-table-cell-role="th">param_neural_net__hidden_layer_sizes</th>
 <th data-quarto-table-cell-role="th">params</th>
 <th data-quarto-table-cell-role="th">split0_test_score</th>
-<th data-quarto-table-cell-role="th">split1_test_score</th>
-<th data-quarto-table-cell-role="th">split2_test_score</th>
 <th data-quarto-table-cell-role="th">mean_test_score</th>
 <th data-quarto-table-cell-role="th">std_test_score</th>
 <th data-quarto-table-cell-role="th">rank_test_score</th>
@@ -1402,122 +1355,106 @@ Figure&nbsp;2.4
 <tbody>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">0</td>
-<td>2.053400</td>
-<td>0.386802</td>
-<td>0.026926</td>
-<td>0.004126</td>
+<td>1.961829</td>
+<td>0.0</td>
+<td>0.028263</td>
+<td>0.0</td>
 <td>(2,)</td>
 <td>{'neural_net__hidden_layer_sizes': (2,)}</td>
-<td>-2.900021</td>
-<td>-2.968643</td>
-<td>-2.878729</td>
-<td>-2.915798</td>
-<td>0.038365</td>
+<td>-2.846601</td>
+<td>-2.846601</td>
+<td>0.0</td>
 <td>8</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">1</td>
-<td>2.036068</td>
-<td>0.267483</td>
-<td>0.029154</td>
-<td>0.003246</td>
+<td>3.130723</td>
+<td>0.0</td>
+<td>0.031076</td>
+<td>0.0</td>
 <td>(3,)</td>
 <td>{'neural_net__hidden_layer_sizes': (3,)}</td>
-<td>-2.891706</td>
-<td>-2.955277</td>
-<td>-2.898843</td>
-<td>-2.915275</td>
-<td>0.028435</td>
+<td>-2.810811</td>
+<td>-2.810811</td>
+<td>0.0</td>
 <td>7</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">2</td>
-<td>6.717807</td>
-<td>0.391012</td>
-<td>0.022901</td>
-<td>0.001156</td>
+<td>7.660357</td>
+<td>0.0</td>
+<td>0.029812</td>
+<td>0.0</td>
 <td>(4,)</td>
 <td>{'neural_net__hidden_layer_sizes': (4,)}</td>
-<td>-2.813088</td>
-<td>-2.892844</td>
-<td>-2.797502</td>
-<td>-2.834478</td>
-<td>0.041758</td>
-<td>6</td>
+<td>-1.799978</td>
+<td>-1.799978</td>
+<td>0.0</td>
+<td>5</td>
 </tr>
 <tr class="even">
 <td data-quarto-table-cell-role="th">3</td>
-<td>2.319414</td>
-<td>0.103762</td>
-<td>0.027622</td>
-<td>0.002060</td>
+<td>4.921726</td>
+<td>0.0</td>
+<td>0.026736</td>
+<td>0.0</td>
 <td>(5,)</td>
 <td>{'neural_net__hidden_layer_sizes': (5,)}</td>
-<td>-1.890891</td>
-<td>-3.093606</td>
-<td>-2.883853</td>
-<td>-2.622783</td>
-<td>0.524563</td>
-<td>5</td>
+<td>-2.648188</td>
+<td>-2.648188</td>
+<td>0.0</td>
+<td>6</td>
 </tr>
 <tr class="odd">
 <td data-quarto-table-cell-role="th">4</td>
-<td>2.758142</td>
-<td>0.920328</td>
-<td>0.028804</td>
-<td>0.003179</td>
+<td>3.323614</td>
+<td>0.0</td>
+<td>0.026697</td>
+<td>0.0</td>
 <td>(6,)</td>
 <td>{'neural_net__hidden_layer_sizes': (6,)}</td>
-<td>-1.813454</td>
-<td>-1.834016</td>
-<td>-1.823665</td>
-<td>-1.823712</td>
-<td>0.008395</td>
-<td>3</td>
-</tr>
-<tr class="even">
-<td data-quarto-table-cell-role="th">5</td>
-<td>3.745881</td>
-<td>0.316166</td>
-<td>0.037313</td>
-<td>0.007820</td>
-<td>(7,)</td>
-<td>{'neural_net__hidden_layer_sizes': (7,)}</td>
-<td>-1.826556</td>
-<td>-1.791720</td>
-<td>-1.811093</td>
-<td>-1.809790</td>
-<td>0.014252</td>
-<td>2</td>
-</tr>
-<tr class="odd">
-<td data-quarto-table-cell-role="th">6</td>
-<td>4.488394</td>
-<td>1.265043</td>
-<td>0.026785</td>
-<td>0.004012</td>
-<td>(8,)</td>
-<td>{'neural_net__hidden_layer_sizes': (8,)}</td>
-<td>-2.854357</td>
-<td>-1.600081</td>
-<td>-1.799832</td>
-<td>-2.084757</td>
-<td>0.550265</td>
+<td>-1.763588</td>
+<td>-1.763588</td>
+<td>0.0</td>
 <td>4</td>
 </tr>
 <tr class="even">
+<td data-quarto-table-cell-role="th">5</td>
+<td>4.643244</td>
+<td>0.0</td>
+<td>0.026805</td>
+<td>0.0</td>
+<td>(7,)</td>
+<td>{'neural_net__hidden_layer_sizes': (7,)}</td>
+<td>-1.677239</td>
+<td>-1.677239</td>
+<td>0.0</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td data-quarto-table-cell-role="th">6</td>
+<td>5.286923</td>
+<td>0.0</td>
+<td>0.021809</td>
+<td>0.0</td>
+<td>(8,)</td>
+<td>{'neural_net__hidden_layer_sizes': (8,)}</td>
+<td>-1.602884</td>
+<td>-1.602884</td>
+<td>0.0</td>
+<td>2</td>
+</tr>
+<tr class="even">
 <td data-quarto-table-cell-role="th">7</td>
-<td>3.707190</td>
-<td>0.577736</td>
-<td>0.022616</td>
-<td>0.003156</td>
+<td>5.278420</td>
+<td>0.0</td>
+<td>0.021161</td>
+<td>0.0</td>
 <td>(9,)</td>
 <td>{'neural_net__hidden_layer_sizes': (9,)}</td>
-<td>-1.700333</td>
-<td>-1.715514</td>
-<td>-1.662616</td>
-<td>-1.692821</td>
-<td>0.022239</td>
+<td>-1.589640</td>
+<td>-1.589640</td>
+<td>0.0</td>
 <td>1</td>
 </tr>
 </tbody>
@@ -1527,34 +1464,28 @@ Figure&nbsp;2.4
 </div>
 </div>
 <p>Plotting from that dataframe:</p>
-<div id="cell-fig-NN-hyperparameter-results" class="cell" data-execution_count="21">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the numeric hidden layer size</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from the tuple-typed hyperparameter</span></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>cv_results_frame[<span class="st">'hidden_layer_size'</span>] <span class="op">=</span> cv_results_frame[</span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'param_neural_net__hidden_layer_sizes'</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[<span class="dv">0</span>])</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert back from scorer neg_mae to mae</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>cv_results_frame[[<span class="ss">f'split</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">_mae'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(search.cv)]] <span class="op">=</span> (</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">-</span> cv_results_frame[[<span class="ss">f'split</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">_test_score'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(search.cv)]]</span>
-<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colormaps</span>
-<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> colormaps[<span class="st">'tab10'</span>].colors</span>
-<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
-<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(search.cv):</span>
-<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>    cv_results_frame.plot.scatter(</span>
-<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span><span class="st">'hidden_layer_size'</span>,</span>
-<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span><span class="ss">f'split</span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">_mae'</span>,</span>
-<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="ss">f'split </span><span class="sc">{</span>i<span class="sc">}</span><span class="ss">'</span>,</span>
-<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span>colors[i],</span>
-<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>        ax<span class="op">=</span>ax,</span>
-<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"MAE"</span>)</span>
-<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-fig-NN-hyperparameter-results" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># extract the numeric hidden layer size</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># from the tuple-typed hyperparameter</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>cv_results_frame[<span class="st">'hidden_layer_size'</span>] <span class="op">=</span> cv_results_frame[</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>    <span class="st">'param_neural_net__hidden_layer_sizes'</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>].<span class="bu">apply</span>(<span class="kw">lambda</span> x: x[<span class="dv">0</span>])</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># convert back from scorer neg_mae to mae</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>cv_results_frame[<span class="st">'mae'</span>] <span class="op">=</span> <span class="op">-</span> cv_results_frame[<span class="st">'mean_test_score'</span>]</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> colormaps</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>)</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>cv_results_frame.plot.scatter(</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>    x<span class="op">=</span><span class="st">'hidden_layer_size'</span>,</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    y<span class="op">=</span><span class="st">'mae'</span>,</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    ax<span class="op">=</span>ax,</span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"MAE"</span>)</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>plt.show()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
-<div id="fig-nn-hyperparameter-results" class="quarto-figure quarto-figure-center quarto-float anchored" height="374" width="515">
+<div id="fig-nn-hyperparameter-results" class="quarto-figure quarto-figure-center quarto-float anchored" width="515" height="374">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-nn-hyperparameter-results-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="whole-game_files/figure-html/fig-nn-hyperparameter-results-output-1.png" id="fig-nn-hyperparameter-results" width="515" height="374" class="figure-img">
